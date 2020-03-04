@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+group 'org.luismedel'
+version '1.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.luismedel.nqueensproblem.Program'
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+dependencies {
+    compile 'info.picocli:picocli:4.2.0'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
